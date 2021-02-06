@@ -11,7 +11,7 @@ ClassImp(vertex)
 
 
 
-vertex::vertex(double sigmaz,  TString moltep="No", double zv=0,double xv=0., double yv=0.):TObject,    //seed settato in main
+vertex::vertex(double sigmaz,  TString moltep="No", double zv=0,double xv=0., double yv=0.):TObject(),    //seed settato in main
 sigma(sigmaz),z(zv) , molteplicita(0),theta (NULL), phi(NULL), x (xv), y(yv)      //controllo in main se sigmaz >=0  
   {  x=0;     //Setx
   y=0;       //Sety
@@ -49,7 +49,7 @@ sigma(sigmaz),z(zv) , molteplicita(0),theta (NULL), phi(NULL), x (xv), y(yv)    
   phi=new double[molteplicita]; 
    theta=new double[molteplicita];   
   for (int i=0;i<molteplicita; i++){
-          phi[i]=Rndm()*2*Pi();      //HP iniziale produzione isotropa su sfera (uniformità in phi e costheta)
+          phi[i]=Rndm()*2*Pi();      //HP iniziale produzione isotropa su sfera (uniformitÃ  in phi e costheta)
           theta [i]=ACos(1-2*Rndm());
           cout<<phi[i]<<"      "<<Cos(theta[i])<<endl;    } }  
           
