@@ -51,7 +51,7 @@ void track :: intpoint(double x0, double y0, double z0, double &X, double &Y, do
 	if(Z>=-H/2 && Z<=H/2) {
 	X=x0+c1*t;
 	Y=y0+c2*t;
-	if(abs(X)<0.00000000001)X=0; //perché? 
+	if(abs(X)<0.00000000001)X=0; //perché? Mi serviva per fare una prova, ma non ha senso di esistere. Posso togliere?
 	if(abs(Y)<0.00000000001)Y=0;
 	if(abs(Z)<0.00000000001)Z=0;}
 	
