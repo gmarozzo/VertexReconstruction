@@ -21,22 +21,22 @@ sigma(sigmaz),z(zv) , molteplicita(0),theta (NULL), phi(NULL), x (xv), y(yv)    
   
   
   double vertex::randgauss(){ 
-  double  u1=Rndm(); 
-    double u2=Rndm();   
-    double x;
-    return x=Sqrt(-2*Log(u1))*Cos (2*Pi()*u2)*sigma;
+  double u1=gRandom->Rndm(); 
+  double u2=gRandom->Rndm();   
+  double x;
+  return x=Sqrt(-2*Log(u1))*Cos (2*Pi()*u2)*sigma;
     
   }     
   
   
   void vertex::Setz() {
   if (sigma>0 ) z=randgauss();
-  cout<<"zvertice"<<z<<endl;}   
+  cout<<"z vertice = "<<z<<endl;}   
                                
   
   
   void vertex::moltcost(){
-  cout<<"molteplicita"<<endl;
+  cout<<"molteplicita = "<<endl;
   int m;
   cin>>m;
   if (m>0) molteplicita=m;
@@ -49,9 +49,9 @@ sigma(sigmaz),z(zv) , molteplicita(0),theta (NULL), phi(NULL), x (xv), y(yv)    
   phi=new double[molteplicita]; 
    theta=new double[molteplicita];   
   for (int i=0;i<molteplicita; i++){
-          phi[i]=Rndm()*2*Pi();      //HP iniziale produzione isotropa su sfera (uniformità in phi e costheta)
-          theta [i]=ACos(1-2*Rndm());
-          cout<<phi[i]<<"      "<<Cos(theta[i])<<endl;    } }  
+          phi[i]=gRandom->Rndm()*2*Pi();      //HP iniziale produzione isotropa su sfera (uniformità in phi e costheta)
+          theta [i]=ACos(1-2*gRandom->Rndm());
+          cout<<"phi["<<i<<"]= "<<phi[i]<<"      "<<"theta["<<i<<"]= "<<theta[i]<<endl;}}  
           
           vertex::~vertex(){
           delete  [] theta;
