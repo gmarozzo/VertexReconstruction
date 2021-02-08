@@ -4,9 +4,12 @@
 
 
 
-void test(double theta, double phi, double x, double y, double z, int R){
+void test(double theta, double phi, double x, double y, double z, double R){
 	track t(theta, phi);
 	cout<<"Parametro t= "<<t.parameter(x,y,R)<<endl;
-	t.intpoint(x, y, z, R);
+	double X=0;
+	double Y=0;
+	double Z=0;
+	t.intpoint(x,y,z,X,Y,Z,R);
 	cout<<"Il punto di intersezione ha coordinate x= "<<X<<" y= "<<Y<<" z= "<<Z<<endl;
 }

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <TRandom3.h>
 #include <TString.h>
-#include "vertex.h"
+#include "vertex.cpp"
 #include <TMath.h>
 using namespace std;
 

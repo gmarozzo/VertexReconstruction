@@ -6,9 +6,6 @@ using namespace TMath;
 
 ClassImp(track)
 
-double X;
-double Y;
-double Z;
 
 track :: track() : TObject(){
 	c1=0;
@@ -18,21 +15,19 @@ track :: track() : TObject(){
 
 
 track :: track (double theta, double phi) : TObject(){
-	double T = theta*Pi()/180; //da radianti a gradi
-	double P = phi*Pi()/180;
-	c1=Sin(T)*Cos(P);
-	c2=Sin(T)*Sin(P);
-	c3=Cos(T);
+	c1=Sin(theta)*Cos(phi);
+	c2=Sin(theta)*Sin(phi);
+	c3=Cos(theta);
 }
 
 
-double track :: parameter (double x, double y, int R){  //valutazione parametro t
+double track :: parameter (double x0, double y0, double R){  //valutazione parametro t
 		
 		
-		double prod = x*c1+y*c2;
-		double C = pow(c1,2)+pow(c2,2);
+		double prod = x0*c1+y0*c2;
+		double C = c1*c1+c2*c2;
 		
-		double Delta = pow(prod,2)-C*(pow(x,2)+pow(y,2)-pow(R,2));
+		double Delta = (prod*prod)-C*((x0*x0)+(y0*y0)-(R*R));
 		if (Delta<0){
 			cout<<"Errore, discriminante negativo."<<endl;	
 			return 0;
@@ -48,19 +43,17 @@ double track :: parameter (double x, double y, int R){  //valutazione parametro 
 		return t;
 }
 
-void track :: intpoint(double x, double y, double z, int R){  //valutazione punto di intersezione
+void track :: intpoint(double x0, double y0, double z0, double &X, double &Y, double &Z, double R){  //valutazione punto di intersezione
 	
-	double t =  parameter(x, y, R);
-	
+	double t =  parameter(x0, y0, R);
+
+	Z=z0+c3*t;
 	if(Z>=-H/2 && Z<=H/2) {
-		X=x+c1*t;
-		Y=y+c2*t;
-		Z=z+c3*t;
-		if(X<0.00000000001)X=0;  
-		if(Y<0.00000000001)Y=0;
-		if(Z<0.00000000001)Z=0;
-	}
-	else cout<<"ERRORE"<<endl;
+	X=x0+c1*t;
+	Y=y0+c2*t;
+	if(abs(X)<0.00000000001)X=0; //perché? 
+	if(abs(Y)<0.00000000001)Y=0;
+	if(abs(Z)<0.00000000001)Z=0;}
 	
 }
 

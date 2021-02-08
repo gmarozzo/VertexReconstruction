@@ -13,8 +13,8 @@ private:
 public:
 	track();
 	track(double theta, double phi);
-	double parameter(double x, double y, int R);
-	void intpoint(double x, double y, double z, int R);
+	double parameter(double x0, double y0, double R);
+	void intpoint(double x0, double y0, double z0, double &X, double &Y, double &Z, double R);
 };
 
 #endif
