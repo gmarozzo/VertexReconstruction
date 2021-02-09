@@ -12,9 +12,7 @@ using namespace std;
 
 
 void vertexsimul(int seed){
-
-  const int H=27;
-  
+  int problemi=0;
   gRandom->SetSeed(seed);
   double sigma=5.3;
   vertex v1(sigma, "No",0,0,0); 
@@ -27,10 +25,7 @@ void vertexsimul(int seed){
   for (int i=0; i< v1.multi;i++)  { 
     tracce[i]=track(v1.theta[i],v1.phi[i]);
     tracce[i].intpoint(v1.x, v1.y, v1.z, X[i], Y[i], Z[i], 3.4);
-    if(abs(Z[i])>H/2) {
-      X[i]=0;
-      Y[i]=0;
-      Z[i]=0;}
+    if(X[i]*X[i]+Y[i]*Y[i]<3.3) {Z[i]=0;}
   }
   
   
