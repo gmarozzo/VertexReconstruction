@@ -11,61 +11,61 @@ ClassImp(vertex)
 
 
 
-vertex::vertex(double sigmaz,  TString moltep="No", double zv=0,double xv=0., double yv=0.):TObject(),    //seed settato in main
-sigma(sigmaz),z(zv) , molteplicita(0),theta (NULL), phi(NULL), x (xv), y(yv)      //controllo in main se sigmaz >=0  
-  {  x=0;     //Setx
-  y=0;       //Sety
+vertex::vertex(double sigmaz,  TString mult, double zv,double xv, double yv):TObject()    //seed settato in main
+    //controllo in main se sigmaz >=0  
+  {  x=xv;     //Setx
+  y=yv;   
+  z=zv;
+  sigma=sigmaz;
+  multi=0;
+  theta=NULL;
+  phi=NULL;    //Sety
   this->Setz();
-  if (moltep=="No") this->moltcost();
-  else this->moltfunz() ;}
+  if (mult=="No") this->multconst();
+  else this->multfunc() ;}
   
   
   double vertex::randgauss(){ 
-  double u1=gRandom->Rndm(); 
-  double u2=gRandom->Rndm();   
-  double x;
-  return x=Sqrt(-2*Log(u1))*Cos (2*Pi()*u2)*sigma;
+  double  u1=gRandom->Rndm(); 
+    double u2=gRandom->Rndm();   
+    double x;
+    return x=Sqrt(-2*Log(u1))*Cos (2*Pi()*u2)*sigma;
     
   }     
   
   
   void vertex::Setz() {
   if (sigma>0 ) z=randgauss();
-  cout<<"z vertice = "<<z<<endl;}   
+  cout<<"zvertice"<<z<<endl;}   
                                
   
   
-  void vertex::moltcost(){
-  cout<<"molteplicita = "<<endl;
+  void vertex::multconst(){
+  cout<<"molteplicita"<<endl;
   int m;
   cin>>m;
-  if (m>0) molteplicita=m;
+  if (m>0) multi=m;
   else cout<<"errore"<<endl;
   }
   
-  void vertex::moltfunz(){molteplicita=4;}      //da scegliere dopo test che funzione mettere
+  void vertex::multfunc(){multi=4;}      //da scegliere dopo test che funzione mettere
   
-  void vertex::prodotti(){  
-  phi=new double[molteplicita]; 
-   theta=new double[molteplicita];   
-  for (int i=0;i<molteplicita; i++){
+  void vertex::prod(){  
+  phi=new double[multi]; 
+   theta=new double[multi];   
+  for (int i=0;i<multi; i++){
           phi[i]=gRandom->Rndm()*2*Pi();      //HP iniziale produzione isotropa su sfera (uniformità in phi e costheta)
           theta [i]=ACos(1-2*gRandom->Rndm());
-          cout<<"phi["<<i<<"]= "<<phi[i]<<"      "<<"theta["<<i<<"]= "<<theta[i]<<endl;}}  
+          cout<<phi[i]<<"      "<<Cos(theta[i])<<endl;    } }  
           
           vertex::~vertex(){
           delete  [] theta;
           delete[] phi;   
           sigma=0; 
-          molteplicita=0;     
+          multi=0;     
           x=0;
           y=0;
           z=0;    }
           
           
   
-  
-  
-  
-
-
