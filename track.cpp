@@ -38,7 +38,6 @@ double track :: parameter (double x0, double y0, double R){  //valutazione param
 		
 		if(t1>0) t=t1;
 		else t=t2;
-		if(t<0.00000000001)t=0;
 		
 		return t;
 }
@@ -50,10 +49,7 @@ void track :: intpoint(double x0, double y0, double z0, double &X, double &Y, do
 	Z=z0+c3*t;
 	if(Z>=-H/2 && Z<=H/2) {
 	X=x0+c1*t;
-	Y=y0+c2*t;
-	if(abs(X)<0.00000000001)X=0; //perché? Mi serviva per fare una prova, ma non ha senso di esistere. Posso togliere?
-	if(abs(Y)<0.00000000001)Y=0;
-	if(abs(Z)<0.00000000001)Z=0;}
+	Y=y0+c2*t;}
 	
 }
 
