@@ -47,9 +47,8 @@ void track :: intpoint(double x0, double y0, double z0, double &X, double &Y, do
 	double t =  parameter(x0, y0, R);
 
 	Z=z0+c3*t;
-	if(Z>=-H/2 && Z<=H/2) {
 	X=x0+c1*t;
-	Y=y0+c2*t;}
+	Y=y0+c2*t;
 	
 }
 

@@ -12,7 +12,9 @@ using namespace std;
 
 
 void vertexsimul(int seed){
-  int problemi=0;
+
+  const int H=27;
+  
   gRandom->SetSeed(seed);
   double sigma=5.3;
   vertex v1(sigma, "No",0,0,0); 
@@ -25,7 +27,10 @@ void vertexsimul(int seed){
   for (int i=0; i< v1.multi;i++)  { 
     tracce[i]=track(v1.theta[i],v1.phi[i]);
     tracce[i].intpoint(v1.x, v1.y, v1.z, X[i], Y[i], Z[i], 3.4);
-    if(abs(X[i])<0.001&&abs(Y[i])<0.001) {problemi++;} //test per trovare punti sull'asse del fascio
+    if(abs(Z[i])>H/2) {
+      X[i]=0;
+      Y[i]=0;
+      Z[i]=0;}
   }
   
   
@@ -33,7 +38,6 @@ void vertexsimul(int seed){
   new TCanvas("cV","beam",600,600);
   g->Draw();
   
-  cout<<"Problemi: "<<problemi<<endl;
 }
 
 
